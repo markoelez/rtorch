@@ -16,16 +16,14 @@ pub struct Tensor {
     data: NDArray,
     grad: RefCell<Option<NDArray>>,
     ctx: RefCell<Option<(Rc<dyn Function>, Context)>>,
-    requires_grad: bool,
 }
 
 impl Tensor {
-    pub fn new(data: NDArray, requires_grad: bool) -> Rc<Self> {
+    pub fn new(data: NDArray) -> Rc<Self> {
         Rc::new(Self {
             data,
             grad: RefCell::new(None),
             ctx: RefCell::new(None),
-            requires_grad,
         })
     }
 
@@ -34,6 +32,9 @@ impl Tensor {
     }
 
     // TODO: Add other methods
+    pub fn add(&self, other: &Tensor) -> Tensor {
+        unimplemented!()
+    }
 }
 
 struct Add;
